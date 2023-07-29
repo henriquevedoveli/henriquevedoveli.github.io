@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name=viewport content="width=device-width, initial-scale=1">
@@ -13,7 +14,8 @@
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+  <table
+    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -26,42 +28,227 @@
             </ul>
           </nav>
 
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
             <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle">
-
-                <h1>Profissional Projects</h1>
-                <h2>Lorem ipsum</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, animi maxime molestiae odio tempore sit cumque blanditiis eligendi praesentium, doloremque fuga, doloribus ex quae at iste aut voluptates impedit. Ratione.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis ut labore libero, iusto aliquid similique ratione incidunt doloribus esse ex amet cumque impedit in aut doloremque eaque illo nesciunt! Nam?</p>
-
-                <br>
-
-                <h1>Academic Projects</h1>
-                <h2>Lorem Ipsum</h2>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, animi maxime molestiae odio tempore sit cumque blanditiis eligendi praesentium, doloremque fuga, doloribus ex quae at iste aut voluptates impedit. Ratione.</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis ut labore libero, iusto aliquid similique ratione incidunt doloribus esse ex amet cumque impedit in aut doloremque eaque illo nesciunt! Nam?</p>
-
-                <br>
-                
-
-                <h1>Personal Projects</h1>
-                <h2>Computer Vision</h2>
-                <p>This is a brief summary of the first post. It contains some important information about the post's content.</p>
-                <p><a href="post1.html">Read More</a></p>
-
-                <!-- Post 2 -->
-               
-
+              <td width="100%" valign="middle">
+                <heading>Profissional Projects</heading>
               </td>
             </tr>
           </table>
+
+          <table id="publications" width="100%" align="center" border="0" border-spacing="0" border-collapse="separate"
+            cellspacing="0" cellpadding="20">
+
+            <table
+              style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+
+
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, animi maxime molestiae odio tempore
+                    sit cumque blanditiis eligendi praesentium, doloremque fuga, doloribus ex quae at iste aut
+                    voluptates impedit. Ratione.</p>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis ut labore libero, iusto aliquid
+                    similique ratione incidunt doloribus esse ex amet cumque impedit in aut doloremque eaque illo
+                    nesciunt! Nam?</p>
+
+                  <br>
+
+                </td>
+              </tr>
+
+              <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+                <tr>
+                  <td width="100%" valign="middle">
+                    <heading>Academic Projects</heading>
+                  </td>
+                </tr>
+              </table>
+
+
+              <table id="publications" width="100%" align="center" border="0" border-spacing="0"
+                border-collapse="separate" cellspacing="0" cellpadding="20">
+
+                <tr>
+                  <td width="25%" valign="top">
+                    <img id="paper_img" src='images/xray.jpeg' width="150" height="150">
+                  </td>
+                  <td width="75%" valign="center">
+                    <a href="docs/TCC_Henrique.pdf" target="_blank">
+                      <papertitle>Classification of Pneumonia on Chest X-ray Using Convolutional Neural Networks
+                      </papertitle> (pt-br)
+                    </a>
+                    <br>
+                    <em>Bachelor's Thesis</em>
+                    <br>
+                    <p align="justify">
+                      <abstract>
+                        Pneumonia affects a large percentage of the world's population, and one of the
+                        diagnostic
+                        methods for the disease is through chest radiography. To automate the diagnostic
+                        process,
+                        aiming to reduce the time to obtain the test results and decrease the chances of human
+                        errors, a method for automatic classification of chest radiography images using
+                        convolutional neural networks is proposed. The choice of the classification model was
+                        based
+                        on the evaluation of performance from well-known neural network architectures. These
+                        architectures include LeNet-5 (78.80% accuracy for multi-class classification and 86.85%
+                        for
+                        binary classification), AlexNet (87.01% accuracy for multi-class classification and
+                        92.31%
+                        for binary classification), VGG-16 (87.02% accuracy for multi-class classification and
+                        95.83% for binary classification), Inception V3 (84.46% accuracy for multi-class
+                        classification and 90.87% for binary classification), and ResNet-50 (84.14% accuracy for
+                        multi-class classification and 85.58% for binary classification). Using these neural
+                        networks, a new convolutional neural network named VGG-Inc was proposed, combining
+                        features
+                        from VGG-16 and Inception V3 architectures. VGG-Inc achieved an accuracy rate of 91.35%
+                        for
+                        multi-class classification. Additionally, it obtained an F1-Score of 0.947 for the
+                        healthy
+                        lungs class, 0.929 for bacterial pneumonia class, and 0.837 for viral pneumonia class.
+                        For
+                        binary classification, the model achieved an accuracy rate of 96.15% on the test data.
+                        Consequently, together with the responsible physician, it is hoped that the proposed new
+                        classification model capable of identifying the presence of pneumonia and
+                        differentiating
+                        between viral and bacterial pneumonia in the classified images will significantly reduce
+                        the
+                        time for medical decision-making and also decrease the chances of human error during
+                        diagnosis. <br>
+                      </abstract>
+                    </p>
+                  </td>
+                </tr>
+
+                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <table id="publications" width="100%" align="center" border="0" border-spacing="0"
+                      border-collapse="separate" cellspacing="0" cellpadding="20">
+
+                      <tr>
+                        <td width="25%" valign="top">
+                          <img id="paper_img" src='images/oct.jpeg' width="150" height="150">
+                        </td>
+                        <td width="75%" valign="center">
+                          <a href="https://uninga.br/wp-content/uploads/2022/04/Anais-do-I-CII-%28Resumos%20simples%29.pdf#page=42"
+                            target="_blank">
+                            <papertitle>Multi-class Classification Model for Optical Coherence Tomography (OCT)
+                              Images Using Deep Learning</papertitle> (pt-br)
+                          </a>
+                          <br>
+                          <em>Scientific Research</em>
+                          <br>
+                          <p align="justify">
+                            <abstract>
+                              Optical Coherence Tomography (OCT) is a procedure performed for the detection and
+                              monitoring of diseases in the retina. By using the images generated during the
+                              examination, the doctor can detect diseases such as Diabetic Macular Edema (DME),
+                              Choroidal Neovascularization (CNV), Optic Disc Drusen (ODD), and also a healthy
+                              retina
+                              without any disease. This study aims to find an alternative for automating the
+                              diagnostic process of OCT examinations through the construction and training of a
+                              Convolutional Neural Network (CNN) capable of classifying three retinal diseases
+                              and a
+                              healthy retina, using the CNN architectures AlexNet and Inception as a basis. The
+                              CNN
+                              used contains a total of 8,069,000 trainable parameters and a depth of 16 layers.
+                              The
+                              training and validation of the network were performed using data from an open
+                              dataset
+                              containing thousands of valid and labeled OCT examination images. The model was
+                              trained for 40 epochs, achieving an accuracy rate of 95.15% in the blind test. For
+                              each class, the F1-score obtained was 92.5% for CNV, 97.1% for DME, 93.6% for ODD,
+                              and
+                              97.3% for the normal retina. When the model was subjected to a classification rate
+                              of
+                              95%, the obtained accuracy rate was 97.45%. </abstract>
+                          </p>
+                        </td>
+                      </tr>
+
+
+                      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+                        <tr>
+                          <td width="100%" valign="middle">
+                            <heading>Personal Projects</heading>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="2">
+                        <tr>
+                          <table id="publications" width="100%" align="center" border="0" border-spacing="0"
+                            border-collapse="separate" cellspacing="0" cellpadding="20">
+                            <tr>
+                              <td width="25%" valign="top">
+                                <img id="paper_img" src='images/lenna.jpeg' width="150" height="150">
+                              </td>
+                              <td width="75%" valign="center">
+                                <a href="https://github.com/henriquevedoveli/portfolio/tree/master" target="_blank">
+                                  <papertitle>Computer Vision Projects (Python and C++)</papertitle>
+                                  (WIP)
+                                </a>
+                                <br>
+                                <em>Just for fun</em>
+                                <br>
+                                <p align="justify">
+                                  <abstract>
+                                    <ul>
+                                      <li>Face Validations</li>
+                                      <li>Face Swapper</li>
+                                      <li>Virtual Whiteboard</li>
+                                      <li>Finger Counter</li>
+                                    </ul>
+                                  </abstract>
+                                </p>
+                              </td>
+                            </tr>
+
+                            <table width="100%" align="center" border="0" cellspacing="0" cellpadding="2">
+                              <tr>
+                                <table id="publications" width="100%" align="center" border="0" border-spacing="0"
+                                  border-collapse="separate" cellspacing="0" cellpadding="20">
+                                  <tr>
+                                    <td width="25%" valign="top">
+                                      <img id="paper_img" src='images/yolo.png' width="150" height="100">
+                                    </td>
+                                    <td width="75%" valign="center">
+                                      <a href="github.com/henrique-vedoveli" target="_blank">
+                                        <papertitle>LabelMe to YOLO Converter</papertitle> (WIP)
+                                      </a>
+                                      <br>
+                                      <em>Just for fun</em>
+                                      <br>
+                                      <p align="justify">
+                                        <abstract>
+                                          Work in progress
+                                        </abstract>
+                                      </p>
+                                    </td>
+                                  </tr>
+
+
+
+                                  <td>
+                                    <br>
+                                    <p align="right">
+                                      <font size="1">
+                                        <a href="https://github.com/henriquevedoveli/">More projects...</a>
+                                      </font>
+                                    </p>
+                                  </td>
+                              </tr>
+
+
         </td>
       </tr>
-    </tbody>
+  </table>
+  </td>
+  </tr>
+  </tbody>
   </table>
   <!-- The rest of your content goes here -->
 </body>
-</html>
 
+</html>
