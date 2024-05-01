@@ -1,0 +1,19 @@
+/* Programa: Simulacao do algoritmo VCube
+    Autor: Eduardo Trevisan
+    Data da ultima modificacao: 15/11/2021
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+
+typedef struct node_set {
+  int* nodes;
+  ssize_t size;
+  ssize_t offset;
+} node_set;
+
+extern node_set* cis(int i, int s);
+extern void set_free(node_set* nodes);
+extern void printCis(int i, int s);

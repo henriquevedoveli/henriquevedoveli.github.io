@@ -1,0 +1,238 @@
+/* 
+    Autor: Henrique H. Vedoveli
+	Detector de falhas vCube na versao 2
+    Data da ultima modificacao: 27/04/2024
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "smpl.h"
+#include "cisj.h"
+
+#define POW_2(num) (1<<(num))
+
+// Definindo os eventos
+#define test 1
+#define fault 2
+#define recovery 3
+
+// Descritor do procesos
+typedef struct {
+    int id; 
+    int *STATE; 	// Vetor de estado dos processos
+    int *failState; // Vetor que guarda estados falhos
+    int s; 			// Indice do cluster
+} TipoProcesso;
+
+int main (int argc, char* argv[]) {
+    static int	N, 		// Quantidade de processos
+                token, event, r, i, j,
+				MaxTempoSimulacao = 120;
+
+    static char fa_name[5]; 
+    static float testInterval = 30.0;
+
+    if(argc != 2) {
+        puts("Uso correto: tempo < num-nodos");
+        exit(1);
+    }
+
+    N = atoi(argv[1]);
+    smpl(0, "Simulacao vCube v2");
+    reset();
+    stream(1);
+
+   
+    TipoProcesso* processo = (TipoProcesso *) malloc(sizeof(TipoProcesso)*N);
+
+    for (i=0; i<N; i++) 
+    { 
+        memset(fa_name, '\0', 5);
+        sprintf(fa_name, "%d", i);
+        processo[i].id = facility(fa_name, 1);
+
+		// Iniciando os vetores de estado
+		processo[i].STATE = (int *) malloc(sizeof(int)*N);
+		processo[i].failState = (int *) malloc(sizeof(int)*N);
+
+		for (j=0; j<N; j++) 
+		{
+			processo[i].STATE[j] = -1;
+			processo[i].failState[j] = -1;
+		}
+
+		processo[i].STATE[i] = 0;
+		processo[i].failState[i] = 0;
+		processo[i].s = 1;
+    }
+
+    // Escalonando so eventos
+    for (i=0; i<N; i++)
+	{
+        schedule(test,testInterval,i); /* estamos escalonando testes para todos os nodos executarem em t=30 */
+    }
+
+	/*
+	1. Caso onde o processo 1 falha no tempo 30 e recupera no tempo 61
+	*/
+	schedule(fault, 31.0, 1); 
+	schedule(recovery, 61.0, 1);	
+
+	/*
+	2. Caso onde o processo 1 e 2 falham no tempo 1, o processo 1 se recupera no tempo 61 e 2 nao se recupera
+	*/
+	// schedule(fault, 1.0, 1); 
+	// schedule(fault, 1.0, 2); 
+	// schedule(recovery, 61.0, 1);
+
+	/*
+	3. processos 4,5,6 e 7 falhos 
+	*/
+	// schedule(fault, 1.0, 4); 
+	// schedule(fault, 1.0, 5); 
+	// schedule(fault, 1.0, 6); 
+	// schedule(fault, 1.0, 7); 
+
+	/*
+	4. processos 4,5,6 e 7 falhos e recuperando no tempo 60
+	*/
+	// schedule(fault, 1.0, 4); 
+	// schedule(fault, 1.0, 5); 
+	// schedule(fault, 1.0, 6); 
+	// schedule(fault, 1.0, 7); 
+
+	// schedule(recovery, 61.0, 4); 
+	// schedule(recovery, 61.0, 5); 
+	// schedule(recovery, 61.0, 6); 
+	// schedule(recovery, 61.0, 7); 
+
+	printf("========================================================\n");
+    printf("           Sistemas Distribuidos Prof. Elias\n");
+    printf("              LOG do vCube na versao 2\n");
+    printf("   Este programa foi executado para: N=%d processos.\n", N); 
+    printf("           Tempo Total de Simulacao=%d\n", MaxTempoSimulacao);
+    printf("========================================================\n\n");
+    
+    // Simulacao
+    while (time() < MaxTempoSimulacao) 
+    {
+        cause(&event, &token);
+        switch(event) 
+		{	
+            case test:
+                if (status(processo[token].id)!=0) break; /* se o testador esta falho: ele nao testa */
+
+		printf("[t=%3.1f] Processo %d testando no cluter s=%d\n", time(), token, processo[token].s);
+
+		node_set* testList = cis(token, processo[token].s);
+
+		/* iterando sobre os nodos ate achar um processo correto */
+		for (int it = 0; it < testList->size; it++)
+		{
+		  i = testList->nodes[it];
+		  if (i >= N) break;
+
+		  if (status(processo[i].id)!=0) /* processo testado eh falho */
+		  { 
+		    printf("  Processo %d testou o processo %d FALHO\n", token, i);
+		    if (processo[token].failState[i] != 1) 
+			{ /* esta falha eh um evento novo? */
+		      if (processo[token].STATE[i] == -1) processo[token].STATE[i] = 0;
+		      processo[token].STATE[i] += 1;    /* atualizando contador de eventos para i */ 
+		      processo[token].failState[i] = 1; /* atualizando processo i para falho */
+		    }
+		  } 
+		  else /* processo testado eh correto */
+		  {
+		    printf("  Processo %d testou o processo %d CORRETO\n",token, i);
+		    if (processo[token].failState[i] != 0) /* este estado eh um evento novo? */ 
+		    {
+		      if (processo[token].STATE[i] == -1) processo[token].STATE[i] += 1;
+		      processo[token].STATE[i] += 1;    /* incrementando contador de eventos para i */ 
+		      processo[token].failState[i] = 0; /* atualizando processo i para correto */
+		    }
+
+		    /* trocando info entre nodos token e i */
+		    for (j=0;j<N;j++) 
+		    {
+		      if (processo[token].STATE[j] >= processo[i].STATE[j])
+		      {
+				processo[i].STATE[j] = processo[token].STATE[j];
+				processo[i].failState[j] = processo[token].failState[j];
+		      }
+		      else
+		      {
+				processo[token].STATE[j] = processo[i].STATE[j];
+				processo[token].failState[j] = processo[i].failState[j];
+		      }
+		    }
+		    processo[token].STATE[token] = 0;
+		    processo[token].failState[token] = 0;
+		    processo[i].STATE[i] = 0;
+		    processo[i].failState[i] = 0;
+		    if (processo[i].STATE[token] == -1) 
+			{
+				processo[i].STATE[token] = 0;
+			}
+			
+		    processo[i].failState[token] = 0;
+
+		    break;
+		  }
+		}
+		set_free(testList);
+		/* atualizando s */
+		processo[token].s++;
+		if (processo[token].s > (N>>1)+1) 
+		{
+			processo[token].s = 1;
+		}
+
+		/* imprimindo vetor de estados */
+		printf("  STATE[%d]: [", token);
+		for (i=0; i<N; i++)
+		{
+		  switch (processo[token].failState[i])
+		  {
+		    case 0:
+		      printf("%d: CORRETO, ", i);
+		      break;
+		    case 1:
+		      printf("%d: FALHO, ", i);
+		      break;
+		    case -1:
+		      printf("%d: unknown, ", i);
+		      break;
+		  }
+		}
+		puts("]\n");
+
+                schedule(test, testInterval, token);
+                break;
+
+            case fault:
+                r = request(processo[token].id,token, 0);
+				printf("*** EVENTO OCORRIDO ***\n");
+                printf("[t = %3.1f] O processo %d esta FALHO\n\n",  time(), token);
+                break;
+		
+            case recovery:
+                release(processo[token].id, token);
+				printf("*** EVENTO OCORRIDO ***\n");
+                printf("[t = %3.1f] O processo %d se RECUPEROU\n\n", time(), token);
+                schedule(test, testInterval, token);
+
+		/* reset vetor de estados */
+		for (j=0;j<N;j++)
+		{
+		  processo[token].failState[j] = -1;
+		  processo[token].STATE[j] = -1;
+		}
+		processo[token].STATE[token] = 0;
+		processo[token].failState[token] = 0;
+
+                break;
+        } /*switch*/
+    } /*while*/
+    exit(0);
+} /*main*/
