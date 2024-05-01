@@ -1,0 +1,195 @@
+========================================================
+           Sistemas Distribuidos Prof. Elias
+              LOG do vCube na versao 2
+   Este programa foi executado para: N=16 processos.
+           Tempo Total de Simulacao=120
+========================================================
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 4 esta FALHO
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 5 esta FALHO
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 6 esta FALHO
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 7 esta FALHO
+
+[t=30.0] Processo 0 testando no cluter s=1
+  Processo 0 testou o processo 1 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 1 testando no cluter s=1
+  Processo 1 testou o processo 0 CORRETO
+  STATE[1]: [0: CORRETO, 1: CORRETO, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 2 testando no cluter s=1
+  Processo 2 testou o processo 3 CORRETO
+  STATE[2]: [0: unknown, 1: unknown, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 3 testando no cluter s=1
+  Processo 3 testou o processo 2 CORRETO
+  STATE[3]: [0: unknown, 1: unknown, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 8 testando no cluter s=1
+  Processo 8 testou o processo 9 CORRETO
+  STATE[8]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 9 testando no cluter s=1
+  Processo 9 testou o processo 8 CORRETO
+  STATE[9]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 10 testando no cluter s=1
+  Processo 10 testou o processo 11 CORRETO
+  STATE[10]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: CORRETO, 11: CORRETO, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 11 testando no cluter s=1
+  Processo 11 testou o processo 10 CORRETO
+  STATE[11]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: CORRETO, 11: CORRETO, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 12 testando no cluter s=1
+  Processo 12 testou o processo 13 CORRETO
+  STATE[12]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: CORRETO, 13: CORRETO, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 13 testando no cluter s=1
+  Processo 13 testou o processo 12 CORRETO
+  STATE[13]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: CORRETO, 13: CORRETO, 14: unknown, 15: unknown, ]
+
+[t=30.0] Processo 14 testando no cluter s=1
+  Processo 14 testou o processo 15 CORRETO
+  STATE[14]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: CORRETO, 15: CORRETO, ]
+
+[t=30.0] Processo 15 testando no cluter s=1
+  Processo 15 testou o processo 14 CORRETO
+  STATE[15]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: CORRETO, 15: CORRETO, ]
+
+[t=60.0] Processo 0 testando no cluter s=2
+  Processo 0 testou o processo 2 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 1 testando no cluter s=2
+  Processo 1 testou o processo 3 CORRETO
+  STATE[1]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 2 testando no cluter s=2
+  Processo 2 testou o processo 0 CORRETO
+  STATE[2]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 3 testando no cluter s=2
+  Processo 3 testou o processo 1 CORRETO
+  STATE[3]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 8 testando no cluter s=2
+  Processo 8 testou o processo 10 CORRETO
+  STATE[8]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 9 testando no cluter s=2
+  Processo 9 testou o processo 11 CORRETO
+  STATE[9]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 10 testando no cluter s=2
+  Processo 10 testou o processo 8 CORRETO
+  STATE[10]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 11 testando no cluter s=2
+  Processo 11 testou o processo 9 CORRETO
+  STATE[11]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=60.0] Processo 12 testando no cluter s=2
+  Processo 12 testou o processo 14 CORRETO
+  STATE[12]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=60.0] Processo 13 testando no cluter s=2
+  Processo 13 testou o processo 15 CORRETO
+  STATE[13]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=60.0] Processo 14 testando no cluter s=2
+  Processo 14 testou o processo 12 CORRETO
+  STATE[14]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=60.0] Processo 15 testando no cluter s=2
+  Processo 15 testou o processo 13 CORRETO
+  STATE[15]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+*** EVENTO OCORRIDO ***
+[t = 61.0] O processo 4 se RECUPEROU
+
+*** EVENTO OCORRIDO ***
+[t = 61.0] O processo 5 se RECUPEROU
+
+*** EVENTO OCORRIDO ***
+[t = 61.0] O processo 6 se RECUPEROU
+
+*** EVENTO OCORRIDO ***
+[t = 61.0] O processo 7 se RECUPEROU
+
+[t=90.0] Processo 0 testando no cluter s=3
+  Processo 0 testou o processo 4 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: unknown, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=90.0] Processo 1 testando no cluter s=3
+  Processo 1 testou o processo 5 CORRETO
+  STATE[1]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: CORRETO, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=90.0] Processo 2 testando no cluter s=3
+  Processo 2 testou o processo 6 CORRETO
+  STATE[2]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: CORRETO, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=90.0] Processo 3 testando no cluter s=3
+  Processo 3 testou o processo 7 CORRETO
+  STATE[3]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: unknown, 7: CORRETO, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=90.0] Processo 8 testando no cluter s=3
+  Processo 8 testou o processo 12 CORRETO
+  STATE[8]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 9 testando no cluter s=3
+  Processo 9 testou o processo 13 CORRETO
+  STATE[9]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 10 testando no cluter s=3
+  Processo 10 testou o processo 14 CORRETO
+  STATE[10]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 11 testando no cluter s=3
+  Processo 11 testou o processo 15 CORRETO
+  STATE[11]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 12 testando no cluter s=3
+  Processo 12 testou o processo 8 CORRETO
+  STATE[12]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 13 testando no cluter s=3
+  Processo 13 testou o processo 9 CORRETO
+  STATE[13]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 14 testando no cluter s=3
+  Processo 14 testou o processo 10 CORRETO
+  STATE[14]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=90.0] Processo 15 testando no cluter s=3
+  Processo 15 testou o processo 11 CORRETO
+  STATE[15]: [0: unknown, 1: unknown, 2: unknown, 3: unknown, 4: unknown, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+[t=91.0] Processo 4 testando no cluter s=1
+  Processo 4 testou o processo 5 CORRETO
+  STATE[4]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=91.0] Processo 5 testando no cluter s=1
+  Processo 5 testou o processo 4 CORRETO
+  STATE[5]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: unknown, 7: unknown, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=91.0] Processo 6 testando no cluter s=1
+  Processo 6 testou o processo 7 CORRETO
+  STATE[6]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: CORRETO, 7: CORRETO, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=91.0] Processo 7 testando no cluter s=1
+  Processo 7 testou o processo 6 CORRETO
+  STATE[7]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: unknown, 5: unknown, 6: CORRETO, 7: CORRETO, 8: unknown, 9: unknown, 10: unknown, 11: unknown, 12: unknown, 13: unknown, 14: unknown, 15: unknown, ]
+
+[t=120.0] Processo 0 testando no cluter s=4
+  Processo 0 testou o processo 8 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: unknown, 6: unknown, 7: unknown, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+

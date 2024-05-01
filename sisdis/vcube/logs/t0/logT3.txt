@@ -1,0 +1,99 @@
+===============================================================
+           Sistemas Distribuidos Prof. Elias
+          LOG do Trabalho Pratico 0, Tarefa 3
+   Este programa foi executado para: N=4 processos.
+           Tempo Total de Simulacao=150
+===============================================================
+
+
+STATE de 0: 0 -1 -1 -1 
+Processo 0 testou o processo 1 correto no tempo  30.0
+Atualizando o valor de STATE do processo 1 para correto
+
+
+STATE de 1: 0 -1 -1 -1 
+Processo 1 testou o processo 2 correto no tempo  30.0
+Atualizando o valor de STATE do processo 2 para correto
+
+
+STATE de 2: 0 -1 -1 -1 
+Processo 2 testou o processo 3 correto no tempo  30.0
+Atualizando o valor de STATE do processo 3 para correto
+
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  30.0
+Atualizando o valor de STATE do processo 0 para correto
+
+
+O processo 1 vai falhar no tempo 31.0
+
+
+STATE de 0: 0 0 -1 -1 
+Processo 0 testou o processo 1 falho no tempo  60.0
+Atualizando o valor de STATE do processo 1 para falho
+Processo 0 testou o processo 2 correto no tempo  60.0
+Atualizando o valor de STATE do processo 2 para correto
+
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo  60.0
+Atualizando o valor de STATE do processo 3 para correto
+
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  60.0
+Atualizando o valor de STATE do processo 0 para correto
+
+
+O processo 1 vai recuperar no tempo 61.0
+
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo  62.0
+Atualizando o valor de STATE do processo 2 para correto
+
+
+STATE de 0: 0 1 0 -1 
+Processo 0 testou o processo 1 correto no tempo  90.0
+Atualizando o valor de STATE do processo 1 para correto
+
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo  90.0
+Atualizando o valor de STATE do processo 3 para correto
+
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  90.0
+Atualizando o valor de STATE do processo 0 para correto
+
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo  92.0
+Atualizando o valor de STATE do processo 2 para correto
+
+
+STATE de 0: 0 0 0 -1 
+Processo 0 testou o processo 1 correto no tempo 120.0
+Atualizando o valor de STATE do processo 1 para correto
+
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo 120.0
+Atualizando o valor de STATE do processo 3 para correto
+
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo 120.0
+Atualizando o valor de STATE do processo 0 para correto
+
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo 122.0
+Atualizando o valor de STATE do processo 2 para correto
+
+
+STATE de 0: 0 0 0 -1 
+Processo 0 testou o processo 1 correto no tempo 150.0
+Atualizando o valor de STATE do processo 1 para correto

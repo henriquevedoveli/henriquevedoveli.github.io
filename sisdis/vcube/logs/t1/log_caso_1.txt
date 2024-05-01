@@ -1,0 +1,59 @@
+========================================================
+           Sistemas Distribuidos Prof. Elias
+              LOG do vCube na versao 2
+   Este programa foi executado para: N=4 processos.
+           Tempo Total de Simulacao=120
+========================================================
+
+[t=30.0] Processo 0 testando no cluter s=1
+  Processo 0 testou o processo 1 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: unknown, 3: unknown, ]
+
+[t=30.0] Processo 1 testando no cluter s=1
+  Processo 1 testou o processo 0 CORRETO
+  STATE[1]: [0: CORRETO, 1: CORRETO, 2: unknown, 3: unknown, ]
+
+[t=30.0] Processo 2 testando no cluter s=1
+  Processo 2 testou o processo 3 CORRETO
+  STATE[2]: [0: unknown, 1: unknown, 2: CORRETO, 3: CORRETO, ]
+
+[t=30.0] Processo 3 testando no cluter s=1
+  Processo 3 testou o processo 2 CORRETO
+  STATE[3]: [0: unknown, 1: unknown, 2: CORRETO, 3: CORRETO, ]
+
+*** EVENTO OCORRIDO ***
+[t = 31.0] O processo 1 esta FALHO
+
+[t=60.0] Processo 0 testando no cluter s=2
+  Processo 0 testou o processo 2 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, ]
+
+[t=60.0] Processo 2 testando no cluter s=2
+  Processo 2 testou o processo 0 CORRETO
+  STATE[2]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, ]
+
+[t=60.0] Processo 3 testando no cluter s=2
+  Processo 3 testou o processo 1 FALHO
+  Processo 3 testou o processo 0 CORRETO
+  STATE[3]: [0: CORRETO, 1: FALHO, 2: CORRETO, 3: CORRETO, ]
+
+*** EVENTO OCORRIDO ***
+[t = 61.0] O processo 1 se RECUPEROU
+
+[t=90.0] Processo 0 testando no cluter s=3
+  STATE[0]: [0: CORRETO, 1: FALHO, 2: CORRETO, 3: CORRETO, ]
+
+[t=90.0] Processo 2 testando no cluter s=3
+  STATE[2]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, ]
+
+[t=90.0] Processo 3 testando no cluter s=3
+  STATE[3]: [0: CORRETO, 1: FALHO, 2: CORRETO, 3: CORRETO, ]
+
+[t=91.0] Processo 1 testando no cluter s=2
+  Processo 1 testou o processo 3 CORRETO
+  STATE[1]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, ]
+
+[t=120.0] Processo 0 testando no cluter s=1
+  Processo 0 testou o processo 1 CORRETO
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, ]
+
