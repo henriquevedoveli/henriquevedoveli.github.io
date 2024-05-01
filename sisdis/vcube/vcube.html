@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Trabalho - Sistemas Distribuídos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .subsection {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trabalho Prático 1 - Sistemas Distribuídos</h1>
+    <h3>Henrique H. Vedoveli</h3>
+
+    <hr>
+
+    <div class="section">
+        <h2>Trabalho Prático 0 - vRing</h2>
+
+        <h3>vRing</h3>
+
+        <p>
+            O vRing, ou algortimo distribuído em Anel, é um detector de falha para sistemas distribuídos pull based, onde os processos executam testes sobre os outros processos.
+            <br>
+            No vRing os processos tem ids sequencias, e cada processo teste seu processo subseguinte, ou seja o processo i testa o processo (i+1)%N.
+            <br>
+            Quando um processo correto testa outro processo correto ele obtem informações sobre os outros processos não testado. Por exemplo um vRing para 6 processos, com todos corretos.
+
+            <table>
+                <tr>
+                  <td>
+                    <img src="assets/vring.png" alt="vRing para 6 processos">
+                  </td>
+                  <td>
+                    <ul>
+                      <li>0 testa 1; obtem informação de (2,3,4,5)</li>
+                      <li>1 testa 2; obtem informação de (3,4,5,0)</li>
+                      <li>2 testa 3; obtem informação de (4,5,0,1)</li>
+                      <li>3 testa 4; obtem informação de (5,0,1,2)</li>
+                      <li>4 testa 5; obtem informação de (0,1,2,3)</li>
+                      <li>5 testa 0; obtem informação de (1,2,3,4)</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+              </body>
+              </html>
+
+              Cada processo correto teste um processo falho, ou com falsa suspeita, o próximo processo é testado até encontrar um processo correto.
+              <br>
+              No vRing o número de testes que pode ocorrer para todos os processos detectarem um evento no pior caso é N (quantidade de processos), já no melhor caso esse número é 1.
+              <br>
+              A latência de detecção é N.
+        </p>
+
+        <h4>Dependências</h4>
+        <p>Disponibilizados na página da matéria</p>
+        <ul>
+            <li><a href="code/t0/smpl.c.txt" download>smpl.c</a></li>
+            <li><a href="code/t0/smpl.h.txt" download>smpl.h</a></li>
+            <li><a href="code/t0/rand.c.txt" download>rand.c</a></li>
+            <li><a href="code/t0/Makefile.txt" download>Makefile</a></li>
+        </ul>
+
+        <hr>
+
+
+        <h3>Tarefa 0 - Digitar, compilar e executar o programa exemplo, tempo.c</h3>
+        <p>Para realizar esta tarefa foi utilizado o código do programa tempo.c apresentado em sala de aula.</p>
+
+        <strong>Códigos Fontes</strong>
+        <li>
+            <a href="code/t0/tarefa0/tempo.c.txt" download>tempo.c</a>
+        </li>
+        <br>
+        <strong>Logs</strong>
+<pre>
+===============================================================
+            Sistemas Distribuidos Prof. Elias
+            LOG do Trabalho Pratico 0, Tarefa 0
+        Digitar, compilar e executar o programa tempo.c
+    Este programa foi executado para: N=4 processos.
+            Tempo Total de Simulacao=150
+===============================================================
+Processo 0: estou testando no tempo 30.0
+Processo 1: estou testando no tempo 30.0
+Processo 2: estou testando no tempo 30.0
+Processo 3: estou testando no tempo 30.0
+Sou o processo 1 e estou falhando no tempo 31.0
+Processo 0: estou testando no tempo 60.0
+Processo 2: estou testando no tempo 60.0
+Processo 3: estou testando no tempo 60.0
+Sou o processo 1 e acabo de recuperar no tempo 61.0
+Processo 1: estou testando no tempo 62.0
+Processo 0: estou testando no tempo 90.0
+Processo 2: estou testando no tempo 90.0
+Processo 3: estou testando no tempo 90.0
+Processo 1: estou testando no tempo 92.0
+Processo 0: estou testando no tempo 120.0
+Processo 2: estou testando no tempo 120.0
+Processo 3: estou testando no tempo 120.0
+Processo 1: estou testando no tempo 122.0
+Processo 0: estou testando no tempo 150.0
+</pre>
+
+<hr>
+        <h3>Tarefa 1 - Fazer cada um dos processos testar o seguinte no anel. Implemente o teste com a função status() do SMPL e imprimir (printf) o resultado de cada teste executado. Por exemplo: “O processo i testou o processo j correto no tempo tal.”</h3>
+        <p>O processo i testa o processo (i+1)%N, sendo assim dentro do loop principal foi adicionado a variável i, que significa o próximo processo a ser testado. </p>
+
+        <strong>Códigos Fontes</strong>
+        <li>
+            <a href="code/t0/tarefa1/tempo.c.txt" download>tempo.c</a>
+        </li>
+        <br>
+        <strong>Logs</strong>
+<pre>
+===============================================================
+            Sistemas Distribuidos Prof. Elias
+            LOG do Trabalho Pratico 0, Tarefa 1
+        Este programa foi executado para: N=4 processos.
+            Tempo Total de Simulacao=150
+===============================================================
+Processo 0 testou o processo 1 correto no tempo 30.0
+Processo 1 testou o processo 2 correto no tempo 30.0
+Processo 2 testou o processo 3 correto no tempo 30.0
+Processo 3 testou o processo 0 correto no tempo 30.0
+O processo 1 vai falhar no tempo 31.0
+Processo 0 testou o processo 1 falho no tempo 60.0
+Processo 2 testou o processo 3 correto no tempo 60.0
+Processo 3 testou o processo 0 correto no tempo 60.0
+O processo 1 vai recuperar no tempo 61.0
+Processo 1 testou o processo 2 correto no tempo 62.0
+Processo 0 testou o processo 1 correto no tempo 90.0
+Processo 2 testou o processo 3 correto no tempo 90.0
+Processo 3 testou o processo 0 correto no tempo 90.0
+Processo 1 testou o processo 2 correto no tempo 92.0
+Processo 0 testou o processo 1 correto no tempo 120.0
+Processo 2 testou o processo 3 correto no tempo 120.0
+Processo 3 testou o processo 0 correto no tempo 120.0
+Processo 1 testou o processo 2 correto no tempo 122.0
+Processo 0 testou o processo 1 correto no tempo 150.0
+</pre>
+<hr>
+        
+        <h3>Tarefa 2 - Cada processo correto executa testes até achar outro processo correto. Lembre-se de tratar o caso em que todos os demais processos estão falhos. Imprimir os testes e resultados</h3>
+        <p> 
+            Para isto foi utilizado um for loop em todos os N processos, e se o processo for falho será testado o próximo processo, caso o processo testado for correto o for loop é encerrado.
+        </p>
+
+        <strong>Exemplo simplificado</strong>
+
+        <pre>
+            <code>
+for (i = 0; i &lt; N; i++){
+    // Processo falho, é testado o proximo processo
+    if (status(processo[proximoProcesso].id) != 0){ 
+        proximoProcesso++;
+    } 
+    // Processo correto, o processo para de testar
+    else if (proximoProcesso != token){
+        break;
+    }
+}
+            </code>
+        </pre>
+
+        <strong>Códigos Fontes</strong>
+        <li>
+            <a href="code/t0/tarefa2/tempo.c.txt" download>tempo.c</a>
+        </li>
+        <br>
+        <strong>Logs</strong>
+<pre>
+===============================================================
+           Sistemas Distribuidos Prof. Elias
+          LOG do Trabalho Pratico 0, Tarefa 2
+   Este programa foi executado para: N=4 processos.
+           Tempo Total de Simulacao=150
+===============================================================
+Processo 0 testou o processo 1 correto no tempo  30.0
+Processo 1 testou o processo 2 correto no tempo  30.0
+Processo 2 testou o processo 3 correto no tempo  30.0
+Processo 3 testou o processo 0 correto no tempo  30.0
+O processo 1 vai falhar no tempo 31.0
+Processo 0 testou o processo 1 falho no tempo  60.0
+Processo 0 testou o processo 2 correto no tempo  60.0
+Processo 2 testou o processo 3 correto no tempo  60.0
+Processo 3 testou o processo 0 correto no tempo  60.0
+O processo 1 vai recuperar no tempo 61.0
+Processo 1 testou o processo 2 correto no tempo  62.0
+Processo 0 testou o processo 1 correto no tempo  90.0
+Processo 2 testou o processo 3 correto no tempo  90.0
+Processo 3 testou o processo 0 correto no tempo  90.0
+Processo 1 testou o processo 2 correto no tempo  92.0
+Processo 0 testou o processo 1 correto no tempo 120.0
+Processo 2 testou o processo 3 correto no tempo 120.0
+Processo 3 testou o processo 0 correto no tempo 120.0
+Processo 1 testou o processo 2 correto no tempo 122.0
+Processo 0 testou o processo 1 correto no tempo 150.0
+</pre>
+<hr>
+
+        <h3>Tarefa 3 - Cada processo mantém localmente o vetor State[N]. A entrada do vetor State[j] indica o estado do processo j. O estado de cada processo pode ser: -1 (unknown), 0 (correto) ou 1 (falho). Inicialize (para todos os processos) o State[N] com -1 (indicando estado “unknown”) para todos os demais processos e 0 para o próprio processo. Nesta tarefa ao executar um teste em um processo j, o testador atualiza a entrada correspondente no vetor State[j]. Em cada intervalo de testes, mostre o vetor State[N].</h3>
+        <p> 
+            É criada o vetor para armezar estados dos processos STATE no descritor dos processos. O vetor STATE inicia como o próprio processo como CORRETO e os estados dos outros processos como UNKNOWN.
+        </p>
+        <p>
+            Quando o processo testa um processo correto j, ele atualiza o valor de j em STATE como CORRETO, caso teste falho e valor é atualizado como FALHO, e enquanto não tiver informação dos processos os valores continuam como UNKNOWN.
+        </p>
+
+        <strong>Exemplo simplificado</strong>
+        <li>
+            Iniciando o vetor STATE
+        </li>
+        <pre>
+            <code>
+for (i = 0; i &lt; N; i++) {
+    // Alocando memoria do vetor STATE
+    processo[i].STATE = (int*) malloc(sizeof(int) * N); 
+    
+    // Assumindo que o processo i é correto
+    processo[i].STATE[i] = correto;
+    
+    // Inicializa os valores dos outros processos como desconhecidos
+    for (int j = 1; j &lt; N; j++) { 
+        processo[i].STATE[j] = unknown;
+    }
+}             
+            </code>
+        </pre>
+
+        <li>
+            Atualizando os valores do vetor STATE
+        </li>
+        <pre>
+            <code>
+for (i = 0; i &lt; N; i++) {
+    if (status(processo[proximoProcesso].id) != 0) {
+        // Atualizando o valor de STATE[proximoProcesso] para 1 (falho)
+        processo[token].STATE[proximoProcesso] = falho;
+        proximoProcesso++;
+    } 
+    else if (proximoProcesso != token) {
+        // Atualizando o valor de STATE[proximoProcesso] para 0 (correto)
+        processo[token].STATE[proximoProcesso] = correto;
+        break;
+    }
+}           
+            </code>
+        </pre>
+
+        <strong>Códigos Fontes</strong>
+        <li>
+            <a href="code/t0/tarefa3/tempo.c.txt" download>tempo.c</a>
+        </li>
+        <br>
+        <strong>Logs</strong>
+<pre>
+===============================================================
+         Sistemas Distribuidos Prof. Elias
+        LOG do Trabalho Pratico 0, Tarefa 3
+    Este programa foi executado para: N=4 processos.
+        Tempo Total de Simulacao=150
+===============================================================
+
+STATE de 0: 0 -1 -1 -1 
+Processo 0 testou o processo 1 correto no tempo  30.0
+Atualizando o valor de STATE do processo 1 para correto
+
+STATE de 1: 0 -1 -1 -1 
+Processo 1 testou o processo 2 correto no tempo  30.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 2: 0 -1 -1 -1 
+Processo 2 testou o processo 3 correto no tempo  30.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  30.0
+Atualizando o valor de STATE do processo 0 para correto
+
+O processo 1 vai falhar no tempo 31.0
+
+STATE de 0: 0 0 -1 -1 
+Processo 0 testou o processo 1 falho no tempo  60.0
+Atualizando o valor de STATE do processo 1 para falho
+Processo 0 testou o processo 2 correto no tempo  60.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo  60.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  60.0
+Atualizando o valor de STATE do processo 0 para correto
+
+O processo 1 vai recuperar no tempo 61.0
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo  62.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 0: 0 1 0 -1 
+Processo 0 testou o processo 1 correto no tempo  90.0
+Atualizando o valor de STATE do processo 1 para correto
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo  90.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  90.0
+Atualizando o valor de STATE do processo 0 para correto
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo  92.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 0: 0 0 0 -1 
+Processo 0 testou o processo 1 correto no tempo 120.0
+Atualizando o valor de STATE do processo 1 para correto
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo 120.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo 120.0
+Atualizando o valor de STATE do processo 0 para correto
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo 122.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 0: 0 0 0 -1 
+Processo 0 testou o processo 1 correto no tempo 150.0
+Atualizando o valor de STATE do processo 1 para correto
+</pre>
+        <hr>
+    
+        <h3>Tarefa 4 - Quando um processo correto testa outro processo correto obtém as informações do estado dos demais processos do sistema, processos do sistema exceto aqueles que testou nesta rodada, além do próprio testador. </h3>
+        <p> 
+            Para fazer com que quando um processo for testado correto ele obtenha as informações de processos não testado.  É verificado se o estado do processo j no vetor STATE é "unknown" (desconhecido). Se for, ele atualiza o estado desse processo na posição j com o estado conhecido do processo correto.  
+        </p>
+
+        <strong>Exemplo simplificado</strong>
+
+        <pre>
+            <code>
+for (i = 0; i &lt; N; i++) {
+    
+    /*
+     Restante do código
+    */
+
+    // Processo correto
+    } else if (proximoProcesso != token) {
+        // Atualizando o valor de STATE[proximoProcesso] para 0 (correto)
+        processo[token].STATE[proximoProcesso] = correto;
+
+        //Atualizando os valores de outros processos corretos
+        for (int j = 0; j &lt; N; j++) {
+            if (processo[token].STATE[j] == unknown) {
+                processo[token].STATE[j] = processo[proximoProcesso].STATE[j];
+            }
+        }
+        break;
+}
+            </code>
+        </pre>
+
+        <strong>Códigos Fontes</strong>
+        <li>
+            <a href="code/t0/tarefa4/tempo.c.txt" download>tempo.c</a>
+        </li>
+        <br>
+        <strong>Logs</strong>
+<pre>   
+===============================================================
+            Sistemas Distribuidos Prof. Elias
+        LOG do Trabalho Pratico 0, Tarefa 4
+        Este programa foi executado para: N=4 processos.
+            Tempo Total de Simulacao=150
+===============================================================
+STATE de 0: 0 -1 -1 -1 
+Processo 0 testou o processo 1 correto no tempo  30.0
+Atualizando o valor de STATE do processo 1 para correto
+
+STATE de 1: 0 -1 -1 -1 
+Processo 1 testou o processo 2 correto no tempo  30.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 2: 0 -1 -1 -1 
+Processo 2 testou o processo 3 correto no tempo  30.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 -1 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  30.0
+Atualizando o valor de STATE do processo 0 para correto
+
+O processo 1 vai falhar no tempo 31.0
+
+STATE de 0: 0 0 -1 -1 
+Processo 0 testou o processo 1 falho no tempo  60.0
+Atualizando o valor de STATE do processo 1 para falho
+Processo 0 testou o processo 2 correto no tempo  60.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 2: 0 -1 -1 0 
+Processo 2 testou o processo 3 correto no tempo  60.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 0 -1 -1 
+Processo 3 testou o processo 0 correto no tempo  60.0
+Atualizando o valor de STATE do processo 0 para correto
+
+O processo 1 vai recuperar no tempo 61.0
+
+STATE de 1: 0 -1 0 -1 
+Processo 1 testou o processo 2 correto no tempo  62.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 0: 0 1 0 0 
+Processo 0 testou o processo 1 correto no tempo  90.0
+Atualizando o valor de STATE do processo 1 para correto
+
+STATE de 2: 0 0 -1 0 
+Processo 2 testou o processo 3 correto no tempo  90.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 0 0 0 
+Processo 3 testou o processo 0 correto no tempo  90.0
+Atualizando o valor de STATE do processo 0 para correto
+
+STATE de 1: 0 0 0 0 
+Processo 1 testou o processo 2 correto no tempo  92.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 0: 0 0 0 0 
+Processo 0 testou o processo 1 correto no tempo 120.0
+Atualizando o valor de STATE do processo 1 para correto
+
+STATE de 2: 0 0 0 0 
+Processo 2 testou o processo 3 correto no tempo 120.0
+Atualizando o valor de STATE do processo 3 para correto
+
+STATE de 3: 0 0 0 0 
+Processo 3 testou o processo 0 correto no tempo 120.0
+Atualizando o valor de STATE do processo 0 para correto
+
+STATE de 1: 0 0 0 0 
+Processo 1 testou o processo 2 correto no tempo 122.0
+Atualizando o valor de STATE do processo 2 para correto
+
+STATE de 0: 0 0 0 0 
+Processo 0 testou o processo 1 correto no tempo 150.0
+Atualizando o valor de STATE do processo 1 para correto
+</pre>
+<hr>
+    </div>
+
+    <div class="section">
+        <h2>Trabalho Prático 1 - vCube</h2>
+
+        <h3>vCube</h3>
+
+        <p>
+            O vCube, é um detector de falha para sistemas distribuídos pull based, onde os processos executam testes sobre os outros processos. No pior dos casos é melhor que o vRing, tornando a solução escalavel. Assim como no vRing, o vCube os processos tem ids sequencias, iniciando de 0 e indo até N-1. 
+            <br>
+            O vCube usa o topologia do Hipercubo, que tem várias propriedades logartimicas, o vCube é um hipercubo quando todos os N processos estão corretos e N é potência de 2.
+            <br>
+            Quando um processo correto testa outro processo correto ele obtem informações sobre os outros processos não testado do mesmo cluster. Por exemplo um vCube para 8 processos, com todos corretos.
+
+            <table>
+                <tr>
+                  <td>
+                    <img src="assets/vcube.png" alt="vcube para 8 processos">
+                  </td>
+                  <td>
+                    <ul>
+                      <li>0 testa 1 (s=1); 0 testa 2 e obtem info de 3 (s=2); 0 testa 4 e obtem info de 5,6,7 (s=3);</li>
+                      <li>1 testa 0 (s=1); 1 testa 3 e obtem info de 2 (s=2); 1 testa 5 e obtem info de 6,7,4 (s=3);</li>
+                      <li>2 testa 3 (s=1); 2 testa 0 e obtem info de 1 (s=2); 2 testa 6 e obtem info de 7,4,5(s=3);</li>
+                      <li>3 testa 2 (s=1); 3 testa 1 e obtem info de 0 (s=2); 3 testa 7 e obtem info de 4,5,6 (s=3);</li>
+                      <li>4 testa 5 (s=1); 4 testa 6 e obtem info de 7 (s=2); 4 testa 0 e obtem info de 1,2,3 (s=3);</li>
+                      <li>5 testa 4 (s=1); 5 testa 7 e obtem info de 6 (s=2); 5 testa 1 e obtem info de 2,3,0 (s=3);</li>
+                      <li>6 testa 7 (s=1); 6 testa 4 e obtem info de 5 (s=2); 6 testa 2 e obtem info de 3,0,1 (s=3);</li>
+                      <li>7 testa 6 (s=1); 7 testa 5 e obtem info de 4 (s=2); 7 testa 3 e obtem info de 0,1,2 (s=3);</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+              </body>
+              </html>
+
+        </p>
+
+        <h4>Dependências</h4>
+        <p>Disponibilizados na página da matéria</p>
+        <ul>
+            <li><a href="code/t1/smpl.c.txt" download>smpl.c</a></li>
+            <li><a href="code/t1/smpl.h.txt" download>smpl.h</a></li>
+            <li><a href="code/t1/rand.c.txt" download>rand.c</a></li>
+            <li><a href="code/t1/cisj.c.txt" download>cisj.c</a></li>
+            <li><a href="code/t1/cisj.h.txt" download>cisj.h</a></li>
+            <li><a href="code/t1/Makefile.txt" download>Makefile</a></li>
+        </ul>
+
+    </p>
+
+        <strong>Códigos Fontes</strong>
+        <li>
+            <a href="code/t1/vcube.c.txt" download>vCube.c</a>
+        </li>
+        <br>
+        <strong>Logs em txt</strong>
+        <ol>
+            <li>N = 4; O processo 1 falha no tempo 31 e recupera no tempo 61;</li>
+            <a href="logs/t1/log_caso_1.txt" download>Logs 1</a>
+            <li> N = 4; Os processos 1 e 2 falham no tempo 1, o processo 1 se recupera no tempo 61 e 2 não se recupera;</li>
+            <a href="logs/t1/log_caso_2.txt" download>Logs 2</a>
+            <li>N = 8; Os processos 4,5,6 e 7 falhos e não se recupera;</li>
+            <a href="logs/t1/log_caso_3.txt" download>Logs 3</a>
+            <li>N = 8; Os processos 4,5,6 e 7 falhos e recuperando no tempo 61;</li>
+            <a href="logs/t1/log_caso_4.txt" download>Logs 4</a>
+            <li>N = 16; Os processos 4,5,6 e 7 falhos e recuperando no tempo 61;</li>
+            <a href="logs/t1/log_caso_4.txt" download>Logs 5</a>
+        </ol>
+    </div>
