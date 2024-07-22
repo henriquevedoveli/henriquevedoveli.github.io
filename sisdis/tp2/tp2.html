@@ -44,12 +44,6 @@
 
     <div class="section">
 
-        <h3>Alterações TP1 - vCube</h3>
-
-        <p>
-            FALAR O Q FOI ALTERADO NO CODIGO DO VCUBE
-        </p>
-
         <h3>Árvore Geradora Mínima Autonômica</h3>
 
         <p>
@@ -107,21 +101,43 @@
                     Se não, o nível s é igual a 1, o filho é considerado uma folha.
             </li>
         </p>
+        <pre><code>if (failState[child] == CORRECT) {
+    printf("  Nível %d - Filho correto encontrado: %d\n", s, child);
+    found = 1;
+
+    if (s > 1) {
+        printf("  - Filho %d é um galho.\n\n", child);
+        generateSpanningTree(child, s - 1, failState);
+    } else {
+        printf("  - Filho %d é uma folha.\n", child);
+    } 
+}</code></pre>
+
+<p>
+    6. Caso nenhum filho correto seja encontrado no nível s, e caso s for igual dim, significa que a raiz não possui filhos corretos, então o processo que era galho passa a ser folha, já que é o último processo correto do galho.
+</p>
+<pre><code>if (!found) {
+    printf("  Nível %d - Nenhum filho correto encontrado.\n", s);
+    if (s == dim) {
+        printf("  Nível %d - Raiz %d não possui filhos corretos, é uma folha.\n", s, root);
+    }
+}</code></pre>
 
         <hr>
+
+    <p>
+        O código para a função completa está demonstrado abaixo: 
+    </p>
         <pre><code class="language-c">void generateSpanningTree(int root, int dim, int *failState) {
     for (int s = 1; s <= dim; s++) {
         node_set *childList = cis(root, s); // Obtém a lista de filhos no cluster s
         int found = 0;
-
         // Verifica se há algum filho correto no nível s
         for (int i = 0; i < childList->size; i++) {
             int child = childList->nodes[i];
-
             if (failState[child] == CORRECT) {
                 printf("  Nível %d - Filho correto encontrado: %d\n", s, child);
                 found = 1;
-
                 // Verifica se o nível atual é maior que 1 para decidir se é galho ou folha
                 if (s > 1) {
                     printf("  - Filho %d é um galho.\n\n", child);
@@ -134,7 +150,6 @@
                 break;
             } 
         } 
-
         // Se nenhum filho correto foi encontrado no cluster s
         if (!found) {
             printf("  Nível %d - Nenhum filho correto encontrado.\n", s);
@@ -142,39 +157,36 @@
                 printf("  Nível %d - Raiz %d não possui filhos corretos, é uma folha.\n", s, root);
             } // if (s == dim)
         } 
-
         set_free(childList);  // Libera a memória da lista de filhos
     } 
-
     printf("Árvore Geradora Mínima gerada a partir da raiz %d está completa.\n\n", root);
+}</code></pre>
+
+        <p>Chamada da função após todos os testes assinalados ao processo <code>root</code> sejam executados:</p>
+
+        <pre><code> ...
+// Verifica se todos os estados dos processos são conhecidos
+int allKnown = 1;
+for (i = 0; i < N; i++) {
+    if (processes[root].STATE[i] == UNKNOWN) {
+        allKnown = 0;
+        break;
+    }
 }
-        </code></pre>
-
-        <p>Chamada da função após os testes</p>
-
-        <pre><code>
-    ...
-
-    // Verifica se todos os estados dos processos são conhecidos
-    int allKnown = 1;
+if (allKnown) {
+    printf(INFORMAÇOES DA ARVORE GERADORA)
     for (i = 0; i < N; i++) {
-        if (processes[root].STATE[i] == UNKNOWN) {
-            allKnown = 0;
-            break;
+        if (processes[root].failState[i] == FAULTY) {
+            printf("%d ", i);
         }
     }
-    if (allKnown) {
-        printf(INFORMAÇOES DA ARVORE GERADORA)
-        for (i = 0; i < N; i++) {
-            if (processes[root].failState[i] == FAULTY) {
-                printf("%d ", i);
-            }
-        }
-        printf("\n\n");
-        generateSpanningTree(root, log2(N), processes[root].failState);
-        break;  // Sai do loop após gerar a árvore
-    }
+    printf("\n\n");
+    generateSpanningTree(root, log2(N), processes[root].failState);
+    break;  // Sai do loop após gerar a árvore
+}
     ...</code></pre>
+    
+        <hr>
 
         <h4>Dependências</h4>
         <p>Disponibilizados na página da matéria</p>
@@ -203,7 +215,6 @@
                 É informado quando o processo que esta testando pega a informação do estado do outros processos com outro processo correto;
             </li>
                 
-        <hr>
 
         <ol>
             <li>Raiz: 0; Dimensões do vCube: 2; nenhum processo falho;</li>
