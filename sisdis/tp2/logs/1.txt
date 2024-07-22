@@ -1,0 +1,36 @@
+========================================================
+           Sistemas Distribuídos - Prof. Elias
+       TP2 - Árvore Geradora Mínima sobre o vCube
+   Este programa foi executado para: N=4 processos.
+           Tempo Total de Simulação=120
+========================================================
+
+[t=30.0] Processo 0 testando no cluster s=1
+  Processo 0 testou o processo 1 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 1
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: desconhecido, 3: desconhecido, ]
+[t=60.0] Processo 0 testando no cluster s=2
+  Processo 0 testou o processo 2 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 2
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, ]
+
+
+------------------------------------------------ 
+        Árvore Geradora Mínima Autonômica
+* Raiz da Árvore: 0
+* Dimensão do vCube: 2
+* Processos falhos: 
+
+Gerando árvore a partir da raiz 0 com dimensão 2
+  Nível 1 - Filho correto encontrado: 1
+  - Filho 1 é uma folha.
+  Nível 2 - Filho correto encontrado: 2
+  - Filho 2 é um galho.
+
+Gerando árvore a partir da raiz 2 com dimensão 1
+  Nível 1 - Filho correto encontrado: 3
+  - Filho 3 é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 2 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 0 está completa.
+

@@ -1,0 +1,92 @@
+========================================================
+           Sistemas Distribuídos - Prof. Elias
+       TP2 - Árvore Geradora Mínima sobre o vCube
+   Este programa foi executado para: N=16 processos.
+           Tempo Total de Simulação=120
+========================================================
+
+[t=30.0] Processo 0 testando no cluster s=1
+  Processo 0 testou o processo 1 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 1
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: desconhecido, 3: desconhecido, 4: desconhecido, 5: desconhecido, 6: desconhecido, 7: desconhecido, 8: desconhecido, 9: desconhecido, 10: desconhecido, 11: desconhecido, 12: desconhecido, 13: desconhecido, 14: desconhecido, 15: desconhecido, ]
+[t=60.0] Processo 0 testando no cluster s=2
+  Processo 0 testou o processo 2 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 2
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: desconhecido, 5: desconhecido, 6: desconhecido, 7: desconhecido, 8: desconhecido, 9: desconhecido, 10: desconhecido, 11: desconhecido, 12: desconhecido, 13: desconhecido, 14: desconhecido, 15: desconhecido, ]
+[t=90.0] Processo 0 testando no cluster s=3
+  Processo 0 testou o processo 4 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 4
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO, 8: desconhecido, 9: desconhecido, 10: desconhecido, 11: desconhecido, 12: desconhecido, 13: desconhecido, 14: desconhecido, 15: desconhecido, ]
+[t=120.0] Processo 0 testando no cluster s=4
+  Processo 0 testou o processo 8 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 8
+  STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]
+
+
+------------------------------------------------ 
+        Árvore Geradora Mínima Autonômica
+* Raiz da Árvore: 0
+* Dimensão do vCube: 4
+* Processos falhos: 
+
+Gerando árvore a partir da raiz 0 com dimensão 4
+  Nível 1 - Filho correto encontrado: 1
+  - Filho 1 é uma folha.
+  Nível 2 - Filho correto encontrado: 2
+  - Filho 2 é um galho.
+
+Gerando árvore a partir da raiz 2 com dimensão 1
+  Nível 1 - Filho correto encontrado: 3
+  - Filho 3 é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 2 está completa.
+
+  Nível 3 - Filho correto encontrado: 4
+  - Filho 4 é um galho.
+
+Gerando árvore a partir da raiz 4 com dimensão 2
+  Nível 1 - Filho correto encontrado: 5
+  - Filho 5 é uma folha.
+  Nível 2 - Filho correto encontrado: 6
+  - Filho 6 é um galho.
+
+Gerando árvore a partir da raiz 6 com dimensão 1
+  Nível 1 - Filho correto encontrado: 7
+  - Filho 7 é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 6 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 4 está completa.
+
+  Nível 4 - Filho correto encontrado: 8
+  - Filho 8 é um galho.
+
+Gerando árvore a partir da raiz 8 com dimensão 3
+  Nível 1 - Filho correto encontrado: 9
+  - Filho 9 é uma folha.
+  Nível 2 - Filho correto encontrado: 10
+  - Filho 10 é um galho.
+
+Gerando árvore a partir da raiz 10 com dimensão 1
+  Nível 1 - Filho correto encontrado: 11
+  - Filho 11 é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 10 está completa.
+
+  Nível 3 - Filho correto encontrado: 12
+  - Filho 12 é um galho.
+
+Gerando árvore a partir da raiz 12 com dimensão 2
+  Nível 1 - Filho correto encontrado: 13
+  - Filho 13 é uma folha.
+  Nível 2 - Filho correto encontrado: 14
+  - Filho 14 é um galho.
+
+Gerando árvore a partir da raiz 14 com dimensão 1
+  Nível 1 - Filho correto encontrado: 15
+  - Filho 15 é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 14 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 12 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 8 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 0 está completa.
+

@@ -1,0 +1,302 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "smpl.h"
+#include "cisj.h"
+#include <math.h>
+
+#define TEST 1
+#define FAULT 2
+#define RECOVERY 3
+#define UNKNOWN -1
+#define CORRECT 0
+#define FAULTY 1
+
+// Estrutura para representar um processo
+typedef struct {
+    int id;             // Identificador do processo
+    int *STATE;         // Vetor para armazenar o estado dos processos
+    int *failState;     // Vetor para armazenar o estado de falha dos processos
+    int s;              // Cluster do processo na árvore
+} Process;
+
+Process *processes;  // Array de processos
+
+// Função para gerar a Árvore Geradora Mínima
+void generateSpanningTree(int root, int dim, int *failState);
+
+int main(int argc, char *argv[]) {
+    int N, root, token, event, i, j, r;
+    static char fa_name[5];
+    static float testInterval = 30.0;  // Intervalo entre testes
+    static int MaxSimTime = 120;       // Tempo máximo de simulação
+
+    // Verifica o número correto de argumentos
+    if (argc != 3) {
+        puts("Uso correto: ./vcube <num-nodos> <raiz>");
+        exit(1);
+    }
+
+    // Inicializa parâmetros a partir dos argumentos
+    N = atoi(argv[1]);
+    root = atoi(argv[2]);
+    smpl(0, "Simulação Arvore Geradora Minima com vCube");  // Inicializa a simulação
+    reset();                        // Reseta o ambiente de simulação
+    stream(1);                      // Define o fluxo de eventos
+
+    // Aloca memória para os processos
+    processes = (Process *) malloc(sizeof(Process) * N);
+
+    // Inicializa cada processo
+    for (i = 0; i < N; i++) {
+        memset(fa_name, '\0', 5);
+        sprintf(fa_name, "%d", i);    // Cria um nome para a instalação do processo
+        processes[i].id = facility(fa_name, 1);  // Cria uma instalação para o processo
+        processes[i].STATE = (int *) malloc(sizeof(int) * N);    // Aloca memória para o vetor de estados
+        processes[i].failState = (int *) malloc(sizeof(int) * N); // Aloca memória para o vetor de estados de falha
+
+        // Inicializa os vetores de estado
+        for (j = 0; j < N; j++) {
+            processes[i].STATE[j] = UNKNOWN;
+            processes[i].failState[j] = UNKNOWN;
+        }
+
+        processes[i].STATE[i] = CORRECT;   // O próprio processo é inicialmente correto
+        processes[i].failState[i] = CORRECT;  // O próprio processo é inicialmente correto
+        processes[i].s = 1;  // Nível inicial na árvore
+    }
+
+    // Agenda os eventos de teste para todos os processos
+    for (i = 0; i < N; i++) {
+        schedule(TEST, testInterval, i);
+    }
+    
+    // Agenda eventos de falha para alguns processos específicos
+    schedule(FAULT, 1.0, 1); // Processo 1 falhará no tempo 1
+    schedule(FAULT, 1.0, 2); // Processo 2 falhará no tempo 1
+    schedule(FAULT, 1.0, 4); // Processo 4 falhará no tempo 1
+    schedule(FAULT, 1.0, 7); // Processo 7 falhará no tempo 1
+
+    printf("========================================================\n");
+    printf("           Sistemas Distribuídos - Prof. Elias\n");
+    printf("       TP2 - Árvore Geradora Mínima sobre o vCube\n");
+    printf("   Este programa foi executado para: N=%d processos.\n", N);
+    printf("           Tempo Total de Simulação=%d\n", MaxSimTime);
+    printf("========================================================\n\n");
+
+    // Loop principal de simulação
+    while (time() < MaxSimTime) {
+        cause(&event, &token);  // Determina o próximo evento e o processo associado
+
+        switch (event) {
+            case TEST:
+                // Verifica se o processo que está testando está correto
+                if (status(processes[token].id) != 0) {
+                    break; // Se o testador estiver falho, não realiza o teste
+                }
+
+                // Se o processo atual é a raiz, imprime o status do teste
+                if (token == root) {
+                    printf("[t=%3.1f] Processo %d testando no cluster s=%d\n", time(), token, processes[token].s);
+                }
+
+                // Obtém a lista de processos a serem testados
+                node_set *testList = cis(token, processes[token].s);
+
+                for (int it = 0; it < testList->size; it++) {
+                    int testee = testList->nodes[it];  // Processo a ser testado
+
+                    // Se o processo testado está fora do intervalo válido, termina o loop
+                    if (testee >= N) {
+                        break;
+                    }
+
+                    // Verifica o estado do processo testado
+                    if (status(processes[testee].id) != 0) {
+                        // Se o processo testado está falho
+                        if (token == root) {
+                            printf("  Processo %d testou o processo %d FALHO\n", token, testee);
+                        }
+
+                        if (processes[token].failState[testee] != FAULTY) {
+                            // Atualiza o estado e o estado de falha do processo testado
+                            if (processes[token].STATE[testee] == UNKNOWN) {
+                                processes[token].STATE[testee] = CORRECT;
+                            }
+
+                            processes[token].STATE[testee]++;
+                            processes[token].failState[testee] = FAULTY;
+                        }
+                    } else {
+                        // Se o processo testado está correto
+                        if (token == root) {
+                            printf("  Processo %d testou o processo %d CORRETO\n", token, testee);
+                        }
+
+                        if (processes[token].failState[testee] != CORRECT) {
+                            // Atualiza o estado e o estado de falha do processo testado
+                            if (processes[token].STATE[testee] == UNKNOWN) {
+                                processes[token].STATE[testee] = CORRECT;
+                            }
+
+                            processes[token].STATE[testee]++;
+                            processes[token].failState[testee] = CORRECT;
+                        }
+
+                        // Atualiza os estados dos outros processos com as informações mais recentes
+                        for (j = 0; j < N; j++) {
+                            if (processes[token].STATE[j] >= processes[testee].STATE[j]) {
+                                processes[testee].STATE[j] = processes[token].STATE[j];
+                                processes[testee].failState[j] = processes[token].failState[j];
+                            } else {
+                                processes[token].STATE[j] = processes[testee].STATE[j];
+                                processes[token].failState[j] = processes[testee].failState[j];
+                            }
+                        }
+
+                        // Atualiza o estado do processo atual e do processo testado
+                        processes[token].STATE[token] = CORRECT;
+                        processes[token].failState[token] = CORRECT;
+                        processes[testee].STATE[testee] = CORRECT;
+                        processes[testee].failState[testee] = CORRECT;
+
+                        if (processes[testee].STATE[token] == UNKNOWN) {
+                            processes[testee].STATE[token] = CORRECT;
+                        }
+
+                        processes[testee].failState[token] = CORRECT;
+                        
+                        // Imprime a informação quando a raiz coleta informações
+                        if (token == root) {
+                            printf("  O processo %d pegou as informações do vetor STATE do processo %d\n", root, testee);
+                        }
+                        break;
+                    }
+                }
+
+                set_free(testList);  // Libera a memória da lista de testes
+                processes[token].s++;  // Incrementa o nível do processo
+
+                // Reseta o nível se ele ultrapassar o limite
+                if (processes[token].s > (N >> 1) + 1) {
+                    processes[token].s = 1;
+                }
+
+                // Imprime o estado do vetor de falhas se o processo atual for a raiz
+                if (token == root) {
+                    printf("  STATE[%d]: [", token);
+                    for (j = 0; j < N; j++) {
+                        switch (processes[token].failState[j]) {
+                            case CORRECT:
+                                printf("%d: CORRETO, ", j);
+                                break;
+                            case FAULTY:
+                                printf("%d: FALHO, ", j);
+                                break;
+                            case UNKNOWN:
+                                printf("%d: desconhecido, ", j);
+                                break;
+                        }
+                    }
+                    printf("]\n");
+                }
+
+                // Reagenda o próximo teste para o processo atual
+                schedule(TEST, testInterval, token);
+                break;
+
+            case FAULT:
+                // Trata o evento de falha do processo
+                r = request(processes[token].id, token, 0);
+                printf("*** EVENTO OCORRIDO ***\n");
+                printf("[t = %3.1f] O processo %d falhou\n\n", time(), token);
+                break;
+
+            case RECOVERY:
+                // Trata o evento de recuperação do processo
+                release(processes[token].id, token);
+                printf("*** EVENTO OCORRIDO ***\n");
+                printf("[t = %3.1f] O processo %d se recuperou\n\n", time(), token);
+                schedule(TEST, testInterval, token);  // Reagenda o teste para o processo recuperado
+
+                // Reseta o estado e o estado de falha do processo recuperado
+                for (j = 0; j < N; j++) {
+                    processes[token].failState[j] = UNKNOWN;
+                    processes[token].STATE[j] = UNKNOWN;
+                }
+                processes[token].STATE[token] = CORRECT;
+                processes[token].failState[token] = CORRECT;
+                break;
+        }
+
+        // Verifica se todos os estados dos processos são conhecidos
+        int allKnown = 1;
+        for (i = 0; i < N; i++) {
+            if (processes[root].STATE[i] == UNKNOWN) {
+                allKnown = 0;
+                break;
+            }
+        }
+        if (allKnown) {
+            // Gera e imprime a Árvore Geradora Mínima se todos os estados são conhecidos
+            printf("\n\n------------------------------------------------ \n");
+            printf("        Árvore Geradora Mínima Autonômica\n");
+            printf("* Raiz da Árvore: %d\n", root);
+            printf("* Dimensão do vCube: %d\n", (int)log2(N));
+            printf("* Processos falhos: ");
+            for (i = 0; i < N; i++) {
+                if (processes[root].failState[i] == FAULTY) {
+                    printf("%d ", i);
+                }
+            }
+            printf("\n\n");
+            generateSpanningTree(root, log2(N), processes[root].failState);
+            break;  // Sai do loop após gerar a árvore
+        }
+    }
+    exit(0);  // Encerra a simulação
+}
+
+// Função para gerar a Árvore Geradora Mínima
+void generateSpanningTree(int root, int dim, int *failState) {
+    printf("Gerando árvore a partir da raiz %d com dimensão %d\n", root, dim);
+
+
+    for (int s = 1; s <= dim; s++) {
+        // Obtém a lista de filhos no nível s
+        node_set *childList = cis(root, s);
+        int found = 0;
+
+        // Verifica se há algum filho correto no nível s
+        for (int i = 0; i < childList->size; i++) {
+            int child = childList->nodes[i];
+
+            if (failState[child] == CORRECT) {
+                printf("  Nível %d - Filho correto encontrado: %d\n", s, child);
+                found = 1;
+
+                // Verifica se o nível atual é maior que 1 para decidir se é galho ou folha
+                if (s > 1) {
+                    printf("  - Filho %d é um galho.\n\n", child);
+                    // Chama recursivamente para gerar a subárvore
+                    generateSpanningTree(child, s - 1, failState);
+                } else {
+                    printf("  - Filho %d é uma folha.\n", child);
+                }
+                break;
+            }
+        }
+
+        // Se nenhum filho correto foi encontrado no nível s
+        if (!found) {
+            printf("  Nível %d - Nenhum filho correto encontrado.\n", s);
+            if (s == dim) {
+                printf("  Nível %d - Raiz %d não possui filhos corretos, é uma folha.\n", s, root);
+            }
+        }
+
+        set_free(childList);  // Libera a memória da lista de filhos
+    }
+
+    printf("Árvore Geradora Mínima gerada a partir da raiz %d está completa.\n\n", root);
+}

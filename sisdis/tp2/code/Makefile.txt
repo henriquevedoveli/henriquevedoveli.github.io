@@ -1,0 +1,19 @@
+all: main
+
+main: main.o smpl.o rand.o cisj.o
+	$(LINK.c) -o $@ -Bstatic main.o smpl.o rand.o cisj.o -lm
+
+smpl.o: smpl.c smpl.h
+	$(COMPILE.c)  -g smpl.c
+
+main.o: main.c smpl.h
+	$(COMPILE.c) -g  main.c
+
+rand.o: rand.c
+	$(COMPILE.c) -g rand.c
+
+clean:
+	$(RM) *.o main relat saida 
+
+cisj.o: cisj.c cisj.h
+	$(COMPILE.c) -g cisj.c

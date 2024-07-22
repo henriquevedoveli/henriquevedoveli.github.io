@@ -1,0 +1,55 @@
+========================================================
+           Sistemas Distribuídos - Prof. Elias
+       TP2 - Árvore Geradora Mínima sobre o vCube
+   Este programa foi executado para: N=8 processos.
+           Tempo Total de Simulação=120
+========================================================
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 0 falhou
+
+[t=30.0] Processo 7 testando no cluster s=1
+  Processo 7 testou o processo 6 CORRETO
+  O processo 7 pegou as informações do vetor STATE do processo 6
+  STATE[7]: [0: desconhecido, 1: desconhecido, 2: desconhecido, 3: desconhecido, 4: desconhecido, 5: desconhecido, 6: CORRETO, 7: CORRETO, ]
+[t=60.0] Processo 7 testando no cluster s=2
+  Processo 7 testou o processo 5 CORRETO
+  O processo 7 pegou as informações do vetor STATE do processo 5
+  STATE[7]: [0: desconhecido, 1: desconhecido, 2: desconhecido, 3: desconhecido, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO, ]
+
+
+------------------------------------------------ 
+        Árvore Geradora Mínima Autonômica
+* Raiz da Árvore: 7
+* Dimensão do vCube: 3
+* Processos falhos: 0 
+
+Gerando árvore a partir da raiz 7 com dimensão 3
+  Nível 1 - Filho correto encontrado: 6
+  - Filho 6 é uma folha.
+  Nível 2 - Filho correto encontrado: 5
+  - Filho 5 é um galho.
+
+Gerando árvore a partir da raiz 5 com dimensão 1
+  Nível 1 - Filho correto encontrado: 4
+  - Filho 4 é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 5 está completa.
+
+  Nível 3 - Filho correto encontrado: 3
+  - Filho 3 é um galho.
+
+Gerando árvore a partir da raiz 3 com dimensão 2
+  Nível 1 - Filho correto encontrado: 2
+  - Filho 2 é uma folha.
+  Nível 2 - Filho correto encontrado: 1
+  - Filho 1 é um galho.
+
+Gerando árvore a partir da raiz 1 com dimensão 1
+  Nível 1 - Nenhum filho correto encontrado.
+  Nível 1 - Raiz 1 não possui filhos corretos, é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 1 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 3 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 7 está completa.
+

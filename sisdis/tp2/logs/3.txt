@@ -1,0 +1,67 @@
+========================================================
+           Sistemas Distribuídos - Prof. Elias
+       TP2 - Árvore Geradora Mínima sobre o vCube
+   Este programa foi executado para: N=8 processos.
+           Tempo Total de Simulação=120
+========================================================
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 1 falhou
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 2 falhou
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 4 falhou
+
+*** EVENTO OCORRIDO ***
+[t = 1.0] O processo 7 falhou
+
+[t=30.0] Processo 0 testando no cluster s=1
+  Processo 0 testou o processo 1 FALHO
+  STATE[0]: [0: CORRETO, 1: FALHO, 2: desconhecido, 3: desconhecido, 4: desconhecido, 5: desconhecido, 6: desconhecido, 7: desconhecido, ]
+[t=60.0] Processo 0 testando no cluster s=2
+  Processo 0 testou o processo 2 FALHO
+  Processo 0 testou o processo 3 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 3
+  STATE[0]: [0: CORRETO, 1: FALHO, 2: FALHO, 3: CORRETO, 4: desconhecido, 5: desconhecido, 6: desconhecido, 7: desconhecido, ]
+[t=90.0] Processo 0 testando no cluster s=3
+  Processo 0 testou o processo 4 FALHO
+  Processo 0 testou o processo 5 CORRETO
+  O processo 0 pegou as informações do vetor STATE do processo 5
+  STATE[0]: [0: CORRETO, 1: FALHO, 2: FALHO, 3: CORRETO, 4: FALHO, 5: CORRETO, 6: CORRETO, 7: FALHO, ]
+
+
+------------------------------------------------ 
+        Árvore Geradora Mínima Autonômica
+* Raiz da Árvore: 0
+* Dimensão do vCube: 3
+* Processos falhos: 1 2 4 7 
+
+Gerando árvore a partir da raiz 0 com dimensão 3
+  Nível 1 - Nenhum filho correto encontrado.
+  Nível 2 - Filho correto encontrado: 3
+  - Filho 3 é um galho.
+
+Gerando árvore a partir da raiz 3 com dimensão 1
+  Nível 1 - Nenhum filho correto encontrado.
+  Nível 1 - Raiz 3 não possui filhos corretos, é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 3 está completa.
+
+  Nível 3 - Filho correto encontrado: 5
+  - Filho 5 é um galho.
+
+Gerando árvore a partir da raiz 5 com dimensão 2
+  Nível 1 - Nenhum filho correto encontrado.
+  Nível 2 - Filho correto encontrado: 6
+  - Filho 6 é um galho.
+
+Gerando árvore a partir da raiz 6 com dimensão 1
+  Nível 1 - Nenhum filho correto encontrado.
+  Nível 1 - Raiz 6 não possui filhos corretos, é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 6 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 5 está completa.
+
+Árvore Geradora Mínima gerada a partir da raiz 0 está completa.
+
