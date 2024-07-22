@@ -15,7 +15,7 @@
 [t=60.0] Processo 7 testando no cluster s=2
   Processo 7 testou o processo 5 CORRETO
   O processo 7 pegou as informações do vetor STATE do processo 5
-  STATE[7]: [0: desconhecido, 1: desconhecido, 2: desconhecido, 3: desconhecido, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO, ]
+  STATE[7]: [0: FALHO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO, ]
 
 
 ------------------------------------------------ 

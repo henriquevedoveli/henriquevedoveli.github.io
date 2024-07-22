@@ -33,6 +33,7 @@
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             color: #d63384;
         }
+
     </style>
 </head>
 <body>
@@ -219,13 +220,68 @@ if (allKnown) {
         <ol>
             <li>Raiz: 0; Dimensões do vCube: 2; nenhum processo falho;</li>
             <a href="logs/1.txt" target="_blank">Logs 1</a>
+            <p>Apos o detector de falhas estabilizar o processo <code>root</code> tem o vetor <code>STATE[0] = [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO]</code>, ou seja todos os processos do sistema estão corretos;</p>
+            <p>Sendo assim, a arvore geradora minima fica:</p>
+            <img src="../assets/agm_1.png" alt="" >
+
             <li>Raiz: 0; Dimensões do vCube: 3; nenhum processo falho;</li>
             <a href="logs/2.txt" target="_blank">Logs 2</a>
+            <p>Apos o detector de falhas estabilizar o processo <code>root</code> tem o vetor <code>STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO]</code>, ou seja todos os processos do sistema estão corretos;</p>
+            <p>Sendo assim, a arvore geradora minima fica:</p>
+            <img src="../assets/agm_2.png" alt="" >
+
             <li>Raiz: 0; Dimensões do vCube: 3; Lista de processos falhos: 1, 2, 4, 7;</li>
             <a href="logs/3.txt" target="_blank">Logs 3</a>
+            <p>Apos o detector de falhas estabilizar o processo <code>root</code> tem o vetor <code>STATE[0]: [0: CORRETO, 1: FALHO, 2: FALHO, 3: CORRETO, 4: FALHO, 5: CORRETO, 6: CORRETO, 7: FALHO, ]</code>, os processos 1,2,4 e 7 estão falhos;</p>
+            <p>Sendo assim, a arvore geradora minima fica:</p>
+            <img src="../assets/agm_3.png" alt="" >
+
+            <p>
+                Os logs gerados para o processo 3 são:
+            </p>
+            <pre>
+Gerando árvore a partir da raiz 0 com dimensão 3
+Nível 1 - Nenhum filho correto encontrado.
+Nível 2 - Filho correto encontrado: 3
+- Filho 3 é um galho.
+
+Gerando árvore a partir da raiz 3 com dimensão 1
+Nível 1 - Nenhum filho correto encontrado.
+Nível 1 - Raiz 3 não possui filhos corretos, é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 3 está completa.</pre>
+
+            <p>Inicialmente o processo 3 é considera galho, porém ápos checar que o processo 3 não possue filhos, ele é desconsiderado galho e considerado filho. O mesmo ocorre para o processo 6:</p>
+<pre>
+Gerando árvore a partir da raiz 5 com dimensão 2
+Nível 1 - Nenhum filho correto encontrado.
+Nível 2 - Filho correto encontrado: 6
+- Filho 6 é um galho.
+
+Gerando árvore a partir da raiz 6 com dimensão 1
+Nível 1 - Nenhum filho correto encontrado.
+Nível 1 - Raiz 6 não possui filhos corretos, é uma folha.
+Árvore Geradora Mínima gerada a partir da raiz 6 está completa.</pre>
+
+
             <li>Raiz: 7; Dimensões do vCube: 3; Lista de processos falhos: 0;</li>
             <a href="logs/4.txt" target="_blank">Logs 4</a>
+            <p>Apos o detector de falhas estabilizar o processo <code>root</code> tem o vetor <code>STATE[7]: [0: FALHO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO]</code>, os processos 1,2,4 e 7 estão falhos;</p>
+            <p>Sendo assim, a arvore geradora minima fica:</p>
+            <img src="../assets/agm_4.png" alt="" >
+
+            <p>Inicialmente o processo 1 é considera galho, porém ápos checar que o processo 1 não possue filhos corretos, ele é desconsiderado galho e considerado filho.</p>
+<pre>  Nível 2 - Filho correto encontrado: 1
+- Filho 1 é um galho.
+
+Gerando árvore a partir da raiz 1 com dimensão 1
+Nível 1 - Nenhum filho correto encontrado.
+Nível 1 - Raiz 1 não possui filhos corretos, é uma folha.</pre>
+
             <li>Raiz: 0; Dimensões do vCube: 4; nenhum processo falho.</li>
             <a href="logs/5.txt" target="_blank">Logs 5</a>
+            <p>Apos o detector de falhas estabilizar o processo <code>root</code> tem o vetor <code>STATE[0]: [0: CORRETO, 1: CORRETO, 2: CORRETO, 3: CORRETO, 4: CORRETO, 5: CORRETO, 6: CORRETO, 7: CORRETO, 8: CORRETO, 9: CORRETO, 10: CORRETO, 11: CORRETO, 12: CORRETO, 13: CORRETO, 14: CORRETO, 15: CORRETO, ]</code>   
+            </p>
+            <img src="../assets/agm_5.png" alt="" >
+
         </ol>
     </div>
